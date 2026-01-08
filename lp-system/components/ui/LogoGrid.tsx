@@ -3,7 +3,7 @@ import { LogoCell } from './LogoCell';
 import { spacing, layout, ColorTheme } from '../../config/design-system';
 
 export type LogoGridProps = {
-  logos: { src?: string; alt: string }[];
+  logos: { src?: string; alt: string; logoName?: 'react' | 'typescript' | 'vercel' | 'cloudflare' }[];
   theme: ColorTheme;
   className?: string;
 };
@@ -34,6 +34,7 @@ export function LogoGrid({ logos, theme, className = '' }: LogoGridProps) {
           src={logo.src}
           alt={logo.alt}
           theme={theme}
+          logoName={logo.logoName}
         />
       ))}
     </div>

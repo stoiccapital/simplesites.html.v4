@@ -1,5 +1,6 @@
 import React from 'react';
 import { spacing, colors, components, ColorTheme } from '../../config/design-system';
+import { LogoIcon } from './LogoIcon';
 
 export type LogoCellProps = {
   src?: string;
@@ -7,6 +8,7 @@ export type LogoCellProps = {
   theme: ColorTheme;
   className?: string;
   wrapperClassName?: string;
+  logoName?: 'react' | 'typescript' | 'vercel' | 'cloudflare';
 };
 
 /**
@@ -15,7 +17,7 @@ export type LogoCellProps = {
  * Owns: Internal padding, logo height, border styling
  * Does NOT own: Section-level spacing
  */
-export function LogoCell({ src, alt, theme, className = '', wrapperClassName = '' }: LogoCellProps) {
+export function LogoCell({ src, alt, theme, className = '', wrapperClassName = '', logoName }: LogoCellProps) {
   const themeColors = colors[theme];
   const isDark = theme === 'dark';
   
@@ -36,7 +38,15 @@ export function LogoCell({ src, alt, theme, className = '', wrapperClassName = '
         ${wrapperClassName}
       `}
     >
-      {src ? (
+      {logoName ? (
+        <div className={`text-text-secondary ${opacityClass} ${components.transition.default}`}>
+          <LogoIcon
+            name={logoName}
+            alt={alt}
+            className={`${spacing.logo.height.md} w-auto ${className}`}
+          />
+        </div>
+      ) : src ? (
         <img
           src={src}
           alt={alt}

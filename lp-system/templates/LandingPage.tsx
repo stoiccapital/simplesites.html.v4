@@ -11,7 +11,6 @@ import { ValueProps } from '../sections/ValueProps';
 import { Features } from '../sections/Features';
 import { DeepDive } from '../sections/DeepDive';
 import { UseCases } from '../sections/UseCases';
-import { Integrations } from '../sections/Integrations';
 import { Metrics } from '../sections/Metrics';
 import { Security } from '../sections/Security';
 import { Testimonials } from '../sections/Testimonials';
@@ -37,11 +36,13 @@ export type LandingPageTemplateProps = {
  * 5. Features
  * 6. Deep Dive
  * 7. Use Cases
- * 8. Testimonials
- * 9. Pricing (optional)
- * 10. FAQ
- * 11. Final CTA
- * 12. Footer
+ * 8. Metrics
+ * 9. Security
+ * 10. Testimonials
+ * 11. Pricing (optional)
+ * 12. FAQ
+ * 13. Final CTA
+ * 14. Footer
  */
 export function LandingPageTemplate({
   theme,
@@ -82,29 +83,26 @@ export function LandingPageTemplate({
       {/* 7. Use Cases */}
       <UseCases copy={copy.useCases || { heading: 'Use Cases', subtitle: 'Built for your workflows', items: [] }} theme={theme} />
       
-      {/* 8. Integrations */}
-      <Integrations copy={copy.integrations || { heading: 'Integrations', subtitle: 'Works with your tools', integrations: [] }} theme={theme} />
-      
-      {/* 9. Metrics */}
+      {/* 8. Metrics */}
       <Metrics copy={copy.metrics || { heading: 'Metrics', subtitle: 'Proven results', metrics: [] }} theme={theme} />
       
-      {/* 10. Security */}
+      {/* 9. Security */}
       <Security copy={copy.security || { heading: 'Security', subtitle: 'Enterprise-grade protection', items: [] }} theme={theme} />
       
-      {/* 11. Testimonials */}
+      {/* 10. Testimonials */}
       <Testimonials copy={copy.testimonials || { heading: 'What customers say', subtitle: 'Trusted by teams worldwide', testimonials: [] }} theme={theme} />
       
-      {/* 12. Pricing (optional) */}
+      {/* 11. Pricing (optional) */}
       <Pricing copy={copy.pricing || { heading: 'Simple pricing', subtitle: 'Choose the plan that works for you', plans: [] }} theme={theme} />
       
-      {/* 13. FAQ */}
+      {/* 12. FAQ */}
       <FAQ theme={theme} content={copy.faq || { heading: 'Frequently asked questions', subtitle: 'Everything you need to know', items: [] }} />
       
-      {/* 14. Final CTA */}
+      {/* 13. Final CTA */}
       <FinalCTA copy={copy.finalCta} theme={theme} />
       </main>
       
-      {/* 13. Footer */}
+      {/* 14. Footer */}
       <Footer theme={theme} labels={messages.footer} />
     </div>
   );
