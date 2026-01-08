@@ -9,6 +9,7 @@ export type PricingCardProps = {
   features: string[];
   ctaLabel: string;
   theme: ColorTheme;
+  locale: 'en' | 'de';
   isHighlighted?: boolean;
   className?: string;
 };
@@ -26,6 +27,7 @@ export function PricingCard({
   features,
   ctaLabel,
   theme,
+  locale,
   isHighlighted = false,
   className = '',
 }: PricingCardProps) {
@@ -71,7 +73,7 @@ export function PricingCard({
       </ul>
       
       <div className="mt-auto">
-        <CTAButton variant="primary" theme={theme} label={ctaLabel} />
+        <CTAButton variant="primary" theme={theme} label={ctaLabel} href={`/${locale}/start`} />
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { components, colors, ColorTheme } from '../../config/design-system';
 
 export type CTAButtonProps = {
@@ -6,6 +7,7 @@ export type CTAButtonProps = {
   theme: ColorTheme;
   label: string;
   onClick?: () => void;
+  href?: string;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
 };
@@ -15,12 +17,14 @@ export type CTAButtonProps = {
  * White slim CTA button (primary/ghost variants)
  * Owns: Button styling, hover/active/focus states
  * Does NOT own: Layout spacing
+ * Supports both button and link (via href prop) modes
  */
 export function CTAButton({
   variant,
   theme,
   label,
   onClick,
+  href,
   type = 'button',
   className = '',
 }: CTAButtonProps) {
@@ -45,11 +49,27 @@ export function CTAButton({
     variantClasses = `bg-bg-default border border-border-subtle text-text-primary hover:bg-bg-neutral-hover hover:border-border-strong active:bg-bg-neutral-active active:border-border-strong`;
   }
 
+  const commonClasses = `${baseClasses} ${variantClasses} cursor-pointer ${className}`;
+
+  // If href is provided, render as Link
+  if (href) {
+    return (
+      <Link
+        href={href}
+        onClick={onClick}
+        className={commonClasses}
+      >
+        {label}
+      </Link>
+    );
+  }
+
+  // Otherwise render as button
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`${baseClasses} ${variantClasses} cursor-pointer ${className}`}
+      className={commonClasses}
     >
       {label}
     </button>

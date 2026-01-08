@@ -171,6 +171,15 @@ body {
     box-shadow: var(--card-hover-shadow);
   }
   
+  /* Focus ring semantic utilities */
+  .ring-ring-focus {
+    --tw-ring-color: var(--ring-color);
+  }
+  
+  .ring-offset-ring-focus {
+    --tw-ring-offset-color: var(--ring-offset);
+  }
+  
   /* Navbar opacity guarantee - ensures navbar remains opaque in all states */
   .nav-surface {
     background-color: var(--bg-default) !important;

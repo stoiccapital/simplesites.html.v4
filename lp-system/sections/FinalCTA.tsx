@@ -8,6 +8,7 @@ import { spacing, typography, colors, globalBackground, ColorTheme } from '../co
 export type FinalCTAProps = {
   copy: SectionFinalCtaCopy;
   theme: ColorTheme;
+  locale: 'en' | 'de';
 };
 
 /**
@@ -17,7 +18,7 @@ export type FinalCTAProps = {
  * Section spacing: Top section.y.2xl, Bottom section.y.xl
  * Internal: H2 → subtitle block.y.md, Subtitle → CTAGroup block.y.lg
  */
-export function FinalCTA({ copy, theme }: FinalCTAProps) {
+export function FinalCTA({ copy, theme, locale }: FinalCTAProps) {
   return (
     <section id="final-cta" data-section-id="final-cta" className={`${spacing.section.top['2xl']} ${spacing.section.bottom.xl} ${globalBackground.neutral.darkest}`}>
       <CenteredLayout>
@@ -30,7 +31,7 @@ export function FinalCTA({ copy, theme }: FinalCTAProps) {
           </p>
         )}
         <CTAGroup align="left" stack="horizontal">
-          <CTAButton variant="primary" theme={theme} label={copy.ctaLabel} />
+          <CTAButton variant="primary" theme={theme} label={copy.ctaLabel} href={`/${locale}/start`} />
         </CTAGroup>
       </CenteredLayout>
     </section>

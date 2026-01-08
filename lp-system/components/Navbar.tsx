@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { spacing, layout, navbar, ColorTheme } from '../config/design-system';
 import { CTAButton } from './ui/CTAButton';
 import { LocaleToggle } from './ui/LocaleToggle';
@@ -32,6 +33,11 @@ export type NavbarProps = {
 
 export function Navbar({ theme, labels, locale }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Check if we're on a page that has landing page sections (not /start or /thanks)
+  const isLandingPage = pathname && !pathname.includes('/start') && !pathname.includes('/thanks');
 
   // Scroll to section handler
   const scrollToSection = (sectionId: string) => {
@@ -41,17 +47,26 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
     }
   };
 
-  // Logo click handler - scroll to Hero
+  // Logo click handler - navigate to home or scroll to Hero
   const handleLogoClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    scrollToSection('hero');
+    if (isLandingPage) {
+      scrollToSection('hero');
+    } else {
+      router.push(`/${locale}`);
+    }
     setIsOpen(false); // Close mobile menu if open
   };
 
   // Nav link click handlers
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
-    scrollToSection(sectionId);
+    if (isLandingPage) {
+      scrollToSection(sectionId);
+    } else {
+      // Navigate to home page with hash
+      router.push(`/${locale}#${sectionId}`);
+    }
     setIsOpen(false); // Close mobile menu after clicking a link
   };
 
@@ -103,7 +118,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
             <div className={`hidden md:flex items-center ${spacing.gap.sm}`}>
               <LocaleToggle />
               <ThemeToggle />
-              <CTAButton variant="primary" theme={theme} label={labels.cta} />
+              <CTAButton variant="primary" theme={theme} label={labels.cta} href={`/${locale}/start`} />
             </div>
 
             {/* Hamburger Button (Mobile Only) */}
@@ -172,7 +187,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
 
               {/* CTA Button (Mobile) */}
               <div className={spacing.block.y.sm}>
-                <CTAButton variant="primary" theme={theme} label={labels.cta} onClick={() => setIsOpen(false)} />
+                <CTAButton variant="primary" theme={theme} label={labels.cta} href={`/${locale}/start`} onClick={() => setIsOpen(false)} />
               </div>
             </div>
           </div>

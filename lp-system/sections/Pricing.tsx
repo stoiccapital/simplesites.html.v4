@@ -7,6 +7,7 @@ import { spacing, typography, colors, globalBackground, ColorTheme } from '../co
 export type PricingProps = {
   copy: SectionPricingCopy;
   theme: ColorTheme;
+  locale: 'en' | 'de';
 };
 
 /**
@@ -17,7 +18,7 @@ export type PricingProps = {
  * Internal: H2 → subtitle block.y.md, Subtitle → cards grid block.y.md
  * Grid: 1 col mobile, 2–3 desktop, gaps via grid tokens
  */
-export function Pricing({ copy, theme }: PricingProps) {
+export function Pricing({ copy, theme, locale }: PricingProps) {
   const plans = copy.plans && copy.plans.length > 0 ? copy.plans : [
     { name: 'Starter', price: '$29', description: 'Perfect for small teams', features: ['Basic features'], ctaLabel: 'Get Started' },
     { name: 'Professional', price: '$99', description: 'For growing businesses', features: ['Advanced features'], ctaLabel: 'Get Started' },
@@ -32,6 +33,7 @@ export function Pricing({ copy, theme }: PricingProps) {
       features={plan.features}
       ctaLabel={plan.ctaLabel}
       theme={theme}
+      locale={locale}
     />
   ));
 

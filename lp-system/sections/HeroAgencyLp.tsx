@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import type { SectionHeroCopy } from '../config/types';
 import { CTAButton } from '../components/ui/CTAButton';
@@ -10,6 +12,7 @@ import { spacing, typography, maxTextWidth, globalBackground, ColorTheme } from 
 export type HeroAgencyLpProps = {
   copy: SectionHeroCopy;
   theme: ColorTheme;
+  locale: 'en' | 'de';
 };
 
 /**
@@ -20,7 +23,14 @@ export type HeroAgencyLpProps = {
  * Internal spacing: H1 → subtitle block.y.md, Subtitle → CTAGroup block.y.md
  * Visual: Premium landing page preview mock on the right
  */
-export function HeroAgencyLp({ copy, theme }: HeroAgencyLpProps) {
+export function HeroAgencyLp({ copy, theme, locale }: HeroAgencyLpProps) {
+  const scrollToValueProps = () => {
+    const element = document.getElementById('value-props');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="hero" data-section-id="hero" className={`${spacing.section.y['2xl']} ${globalBackground.neutral.darkest}`}>
       <CenteredLayout>
@@ -41,9 +51,9 @@ export function HeroAgencyLp({ copy, theme }: HeroAgencyLpProps) {
             )}
             <div className={spacing.block.y.md}>
               <CTAGroup align="left" stack="horizontal">
-                <CTAButton variant="primary" theme={theme} label={copy.primaryCtaLabel} />
+                <CTAButton variant="primary" theme={theme} label={copy.primaryCtaLabel} href={`/${locale}/start`} />
                 {copy.secondaryCtaLabel && (
-                  <CTAButton variant="ghost" theme={theme} label={copy.secondaryCtaLabel} />
+                  <CTAButton variant="ghost" theme={theme} label={copy.secondaryCtaLabel} onClick={scrollToValueProps} />
                 )}
               </CTAGroup>
             </div>

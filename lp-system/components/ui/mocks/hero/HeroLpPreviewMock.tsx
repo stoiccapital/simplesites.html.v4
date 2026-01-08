@@ -94,7 +94,7 @@ function SingleLayout() {
       {/* 1. Sticky Navbar */}
       <div className={`sticky top-0 bg-bg-default border-b border-border-subtle z-10 flex items-center justify-between ${spacing.container.px} py-3`}>
         <div className={`${typography.label} text-text-primary`}>
-          Logo
+          Simple Sites
         </div>
         <div className={`${components.button.radius} bg-cta-bg text-cta-text px-5 py-2 ${typography.textXs} font-medium`}>
           Get started
@@ -122,7 +122,22 @@ function SingleLayout() {
               <div className={`${components.button.radius} bg-cta-bg text-cta-text px-5 py-2 ${typography.textXs} font-medium`}>
                 Get started
               </div>
-              <div className={`${components.button.radius} border border-border-subtle bg-bg-default text-text-primary px-5 py-2 ${typography.textXs} font-medium`}>
+              <div 
+                className={`${components.button.radius} border border-border-subtle bg-bg-default text-text-primary px-5 py-2 ${typography.textXs} font-medium cursor-pointer`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  scrollToSection('value-props');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    scrollToSection('value-props');
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+              >
                 Learn more
               </div>
             </div>

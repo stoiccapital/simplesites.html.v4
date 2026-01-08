@@ -46,7 +46,7 @@ export type ShellMessages = {
 const shellMessages: Record<'en' | 'de', ShellMessages> = {
   en: {
     navbar: {
-      brand: 'Logo',
+      brand: 'Simple Sites',
       links: {
         features: 'Features',
         pricing: 'Pricing',
@@ -63,7 +63,7 @@ const shellMessages: Record<'en' | 'de', ShellMessages> = {
       },
     },
     footer: {
-      copyright: '© 2024 Company Name. All rights reserved.',
+      copyright: '© 2024 Simple Sites. All rights reserved.',
       links: {
         privacy: 'Privacy',
         terms: 'Terms',
@@ -73,7 +73,7 @@ const shellMessages: Record<'en' | 'de', ShellMessages> = {
   },
   de: {
     navbar: {
-      brand: 'Logo',
+      brand: 'Simple Sites',
       links: {
         features: 'Funktionen',
         pricing: 'Preise',
@@ -90,7 +90,7 @@ const shellMessages: Record<'en' | 'de', ShellMessages> = {
       },
     },
     footer: {
-      copyright: '© 2024 Firmenname. Alle Rechte vorbehalten.',
+      copyright: '© 2024 Simple Sites. Alle Rechte vorbehalten.',
       links: {
         privacy: 'Datenschutz',
         terms: 'Nutzungsbedingungen',

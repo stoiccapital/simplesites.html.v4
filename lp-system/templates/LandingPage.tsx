@@ -63,9 +63,9 @@ export function LandingPageTemplate({
       <main>
       {/* 2. Hero */}
       {useAgencyHero ? (
-        <HeroAgencyLp copy={copy.hero} theme={theme} />
+        <HeroAgencyLp copy={copy.hero} theme={theme} locale={locale} />
       ) : (
-        <Hero copy={copy.hero} theme={theme} />
+        <Hero copy={copy.hero} theme={theme} locale={locale} />
       )}
       
       {/* 3. Social Proof */}
@@ -93,13 +93,13 @@ export function LandingPageTemplate({
       <Testimonials copy={copy.testimonials || { heading: 'What customers say', subtitle: 'Trusted by teams worldwide', testimonials: [] }} theme={theme} />
       
       {/* 11. Pricing (optional) */}
-      <Pricing copy={copy.pricing || { heading: 'Simple pricing', subtitle: 'Choose the plan that works for you', plans: [] }} theme={theme} />
+      <Pricing copy={copy.pricing || { heading: 'Simple pricing', subtitle: 'Choose the plan that works for you', plans: [] }} theme={theme} locale={locale} />
       
       {/* 12. FAQ */}
       <FAQ theme={theme} content={copy.faq || { heading: 'Frequently asked questions', subtitle: 'Everything you need to know', items: [] }} />
       
       {/* 13. Final CTA */}
-      <FinalCTA copy={copy.finalCta} theme={theme} />
+      <FinalCTA copy={copy.finalCta} theme={theme} locale={locale} />
       </main>
       
       {/* 14. Footer */}
