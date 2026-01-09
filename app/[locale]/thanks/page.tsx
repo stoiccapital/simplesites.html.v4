@@ -7,7 +7,7 @@ import { Navbar } from '../../../lp-system/components/Navbar';
 import { Footer } from '../../../lp-system/components/Footer';
 import { CenteredLayout } from '../../../lp-system/components/layouts/CenteredLayout';
 import { getMessages } from '../../../lp-system/locales';
-import { spacing, typography, components, colors, globalBackground, ColorTheme } from '../../../lp-system/config/design-system';
+import { spacing, typography, components, globalBackground, ColorTheme } from '../../../lp-system/config/design-system';
 import { DEFAULT_THEME } from '../../../lp-system/config/preferences';
 
 export default function ThanksPage() {
@@ -47,7 +47,7 @@ export default function ThanksPage() {
           </div>
         </CenteredLayout>
       </main>
-      <Footer theme={theme} labels={messages.footer} />
+      <Footer theme={theme} labels={messages.footer} locale={locale} />
     </div>
   );
 }

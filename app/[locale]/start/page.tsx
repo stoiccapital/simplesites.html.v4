@@ -309,7 +309,7 @@ export default function StartPage() {
           </div>
         </CenteredLayout>
       </main>
-      <Footer theme={theme} labels={messages.footer} />
+      <Footer theme={theme} labels={messages.footer} locale={locale} />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { spacing, layout, navbar, ColorTheme } from '../config/design-system';
+import { buildLocalePath } from '../config/preferences';
 import { CTAButton } from './ui/CTAButton';
 import { LocaleToggle } from './ui/LocaleToggle';
 import { ThemeToggle } from './ui/ThemeToggle';
@@ -36,8 +37,9 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
-  // Check if we're on a page that has landing page sections (not /start or /thanks)
-  const isLandingPage = pathname && !pathname.includes('/start') && !pathname.includes('/thanks');
+  // Check if we're on the landing page (home page with sections)
+  // Landing page is exactly /{locale} or /{locale}/, not any sub-routes
+  const isLandingPage = pathname && (pathname === `/${locale}` || pathname === `/${locale}/`);
 
   // Scroll to section handler
   const scrollToSection = (sectionId: string) => {
@@ -53,7 +55,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
     if (isLandingPage) {
       scrollToSection('hero');
     } else {
-      router.push(`/${locale}`);
+      router.push(buildLocalePath(locale, '/'));
     }
     setIsOpen(false); // Close mobile menu if open
   };
@@ -65,7 +67,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
       scrollToSection(sectionId);
     } else {
       // Navigate to home page with hash
-      router.push(`/${locale}#${sectionId}`);
+      router.push(buildLocalePath(locale, `/#${sectionId}`));
     }
     setIsOpen(false); // Close mobile menu after clicking a link
   };
@@ -103,7 +105,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
             {navLinks.map((link) => (
               <a 
                 key={link.id}
-                href={`#${link.id}`} 
+                href={isLandingPage ? `#${link.id}` : buildLocalePath(locale, `/#${link.id}`)}
                 onClick={(e) => handleNavClick(e, link.id)}
                 className="text-text-secondary hover:text-link-hover transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-ring-focus rounded"
               >
@@ -118,7 +120,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
             <div className={`hidden md:flex items-center ${spacing.gap.sm}`}>
               <LocaleToggle />
               <ThemeToggle />
-              <CTAButton variant="primary" theme={theme} label={labels.cta} href={`/${locale}/start`} />
+              <CTAButton variant="primary" theme={theme} label={labels.cta} href={buildLocalePath(locale, '/start')} />
             </div>
 
             {/* Hamburger Button (Mobile Only) */}
@@ -177,7 +179,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
               {navLinks.map((link) => (
                 <a
                   key={link.id}
-                  href={`#${link.id}`}
+                  href={isLandingPage ? `#${link.id}` : buildLocalePath(locale, `/#${link.id}`)}
                   onClick={(e) => handleNavClick(e, link.id)}
                   className={`text-text-secondary hover:text-link-hover transition-colors ${spacing.block.y.sm} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring-focus focus-visible:ring-offset-2 focus-visible:ring-offset-ring-focus rounded`}
                 >
@@ -187,7 +189,7 @@ export function Navbar({ theme, labels, locale }: NavbarProps) {
 
               {/* CTA Button (Mobile) */}
               <div className={spacing.block.y.sm}>
-                <CTAButton variant="primary" theme={theme} label={labels.cta} href={`/${locale}/start`} onClick={() => setIsOpen(false)} />
+                <CTAButton variant="primary" theme={theme} label={labels.cta} href={buildLocalePath(locale, '/start')} onClick={() => setIsOpen(false)} />
               </div>
             </div>
           </div>

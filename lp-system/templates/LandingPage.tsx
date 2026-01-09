@@ -103,7 +103,7 @@ export function LandingPageTemplate({
       </main>
       
       {/* 14. Footer */}
-      <Footer theme={theme} labels={messages.footer} />
+      <Footer theme={theme} labels={messages.footer} locale={locale} />
     </div>
   );
 }

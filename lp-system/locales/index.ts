@@ -36,9 +36,9 @@ export type ShellMessages = {
   footer: {
     copyright: string;
     links: {
+      imprint: string;
       privacy: string;
       terms: string;
-      contact: string;
     };
   };
 };
@@ -65,9 +65,9 @@ const shellMessages: Record<'en' | 'de', ShellMessages> = {
     footer: {
       copyright: '© 2024 Simple Sites. All rights reserved.',
       links: {
+        imprint: 'Imprint',
         privacy: 'Privacy',
         terms: 'Terms',
-        contact: 'Contact',
       },
     },
   },
@@ -92,9 +92,9 @@ const shellMessages: Record<'en' | 'de', ShellMessages> = {
     footer: {
       copyright: '© 2024 Simple Sites. Alle Rechte vorbehalten.',
       links: {
+        imprint: 'Impressum',
         privacy: 'Datenschutz',
         terms: 'Nutzungsbedingungen',
-        contact: 'Kontakt',
       },
     },
   },
